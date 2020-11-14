@@ -1,0 +1,24 @@
+{
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "plugins": [
+    "react-hooks",
+    "@typescript-eslint"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "globals": {
+    "__VERSION__": "readonly",
+    "__COMMITHASH__": "readonly",
+    "__BRANCH__": "readonly",
+    "window": "readonly"
+  },
+  "parser": "@typescript-eslint/parser"
+}

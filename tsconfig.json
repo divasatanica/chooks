@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    "module": "esnext", // 使用 ES2015 模块
+    "target": "esnext", // 编译成 ES2015 (Babel 将做剩下的事情)
+    "allowSyntheticDefaultImports": true, // 允许你使用 ES2015 默认的 imports 风格
+    "sourceMap": true, // 使 TypeScript 生成 sourcemaps
+    "jsx": "preserve", // 开启 JSX 模式, 但是 "preserve" 告诉 TypeScript 不要转换它(我们将使用 Babel)
+    "strictNullChecks": true,
+    "moduleResolution": "node",
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    }
+  },
+  "include": [
+    "src/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules", // 这个目录下的代码不会被 typescript 处理
+    "lib",
+    "webpack"
+  ],
+  "lib": [
+    "esnext",
+    "dom",
+    "dom.iterable",
+    "scripthost"
+  ]
+}
