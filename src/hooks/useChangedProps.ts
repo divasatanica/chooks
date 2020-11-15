@@ -9,7 +9,6 @@ function useChangedProps<T>(initialProps: T, callback: PropsCallback<T>): void {
     setPrevProps(p => {
       if (p === initialProps) {
         return initialProps;
-        // return;
       }
       callback(p, initialProps);
       return initialProps;
