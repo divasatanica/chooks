@@ -12,7 +12,7 @@ const DEFAULT_OPTION = {
   expireAge: 0
 };
 
-function useLocalStorage(key: string, defaultValue: unknown, options: UseLocalStorageOption = DEFAULT_OPTION): [unknown | null, StorageUpdater<unknown>] {
+function useLocalStorage(key: string, defaultValue: unknown, options: UseLocalStorageOption = DEFAULT_OPTION): [any, StorageUpdater<any>] {
   const storagedValue = localStorage.getItem(key);
   const initialValue = storagedValue ? parseJson(storagedValue) : defaultValue;
   const [memoizedStorage, setMemoizedStorage] = useState(initialValue as unknown);
@@ -36,9 +36,6 @@ function useLocalStorage(key: string, defaultValue: unknown, options: UseLocalSt
     }
   }
 
-  useEffect(() => {
-    updater(defaultValue);
-  }, [defaultValue]);
   useEffect(() => {
     updater(initialValue);
   }, [initialValue]);
