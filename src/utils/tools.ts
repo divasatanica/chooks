@@ -38,7 +38,7 @@ function debounce(fn: (...args: unknown[]) => unknown, delay: number, thisValue?
 
   return function debouncedFunction(...args: unknown[]) {
     if (timer) {
-      clearTimeout(timer);
+      window.clearTimeout(timer);
     }
 
     timer = window.setTimeout(() => {
