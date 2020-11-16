@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { debounce } from '@/utils/tools';
+import { debounce } from '../../utils/tools';
 
 function useDebounce(fn: (...args: unknown[]) => any, delay: number, thisValue?: unknown): (...args: unknown[]) => unknown | unknown {
   const fnRef = useRef(fn);

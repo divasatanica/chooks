@@ -1,5 +1,5 @@
 import { useRef, useEffect, useState } from 'react';
-import { isDate } from '@/utils/type';
+import { isDate } from '../../utils/type';
 
 const SECOND = 1000;
 const MIN = 60 * SECOND;

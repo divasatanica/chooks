@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { parseJson } from '@/utils/tools';
+import { parseJson } from '../../utils/tools';
 
 interface UseLocalStorageOption {
   expireAge?: number;
