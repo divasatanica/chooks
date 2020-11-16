@@ -1,4 +1,7 @@
 lib/
-node_modules/
 .idea
 .vscode
+es/
+dist/
+dev-dist/
+node_modules/

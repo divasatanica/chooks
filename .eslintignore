@@ -1,2 +1,7 @@
 /lib
 /webpack
+/dist
+/es
+/dev-dist
+babel.config.js
+gulpfile.js

@@ -7,9 +7,9 @@ module.exports = merge(baseConfig, {
   mode: 'development',
 
   output: {
-    path: path.resolve(__dirname, '../lib'),
+    path: path.resolve(__dirname, '../dev-dist'),
     publicPath: '/',
-    filename: 'chooks.js',
+    filename: 'index.js',
     library: 'Chooks', // 定义暴露到浏览器环境的全局变量名称
     libraryTarget: 'umd',
     globalObject: 'this',
