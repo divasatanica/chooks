@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { getUrlParams } from '@/utils/tools';
+import { getUrlParams } from '../../utils/tools';
 
 function useUrlParams<T>(name: string, calculator: (val: string) => T): T {
   const _calc = calculator || (val => val);

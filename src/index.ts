@@ -1,9 +1,9 @@
-import { useChangedProps } from './hooks/useChangedProps';
-import { useUrlParams } from './hooks/useUrlParams';
-import { useLocalStorage } from './hooks/useLocalStorage';
-import { useDebounce } from './hooks/useDebounce';
-import { useCountdown } from './hooks/useCountdown';
-import { useToggle } from './hooks/useToggle';
+import { useChangedProps } from './hooks/useChangedProps/index';
+import { useUrlParams } from './hooks/useUrlParams/index';
+import { useLocalStorage } from './hooks/useLocalStorage/index';
+import { useDebounce } from './hooks/useDebounce/index';
+import { useCountdown } from './hooks/useCountdown/index';
+import { useToggle } from './hooks/useToggle/index';
 
 export {
   useChangedProps,
