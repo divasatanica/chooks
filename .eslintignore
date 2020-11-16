@@ -5,3 +5,4 @@
 /dev-dist
 babel.config.js
 gulpfile.js
+jest.config.js
