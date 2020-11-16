@@ -47,8 +47,15 @@ function debounce(fn: (...args: unknown[]) => unknown, delay: number, thisValue?
   }
 }
 
+function sleep(delay: number): Promise<void> {
+  return new Promise(r => {
+    setTimeout(r, delay);
+  });
+}
+
 export {
   getUrlParams,
   parseJson,
-  debounce
+  debounce,
+  sleep
 };

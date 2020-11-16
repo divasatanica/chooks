@@ -1,2 +1,5 @@
 lib/
+es/
+dist/
+dev-dist/
 node_modules/
