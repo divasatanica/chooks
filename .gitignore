@@ -1,4 +1,6 @@
 lib/
+.idea
+.vscode
 es/
 dist/
 dev-dist/
