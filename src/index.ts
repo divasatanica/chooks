@@ -4,6 +4,10 @@ import { useLocalStorage } from './hooks/useLocalStorage/index';
 import { useDebounce } from './hooks/useDebounce/index';
 import { useCountdown } from './hooks/useCountdown/index';
 import { useToggle } from './hooks/useToggle/index';
+import { useHover } from './hooks/useHover/index';
+import { useMount } from './hooks/useMount/index';
+import { useUnmount } from './hooks/useUnmount/index';
+import { useMousePosition } from './hooks/useMousePosition/index';
 
 export {
   useChangedProps,
@@ -11,5 +15,9 @@ export {
   useLocalStorage,
   useDebounce,
   useCountdown,
-  useToggle
+  useToggle,
+  useHover,
+  useMount,
+  useUnmount,
+  useMousePosition
 };
