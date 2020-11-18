@@ -1,6 +1,6 @@
 {
   "name": "@vergiss/chooks",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "React hooks library",
   "keywords": [
     "chooks",
@@ -10,7 +10,7 @@
   "main": "lib/chooks.js",
   "module": "es/index.js",
   "types": "./lib/index.d.ts",
-  "unpkg": "dist/chook.min.js",
+  "unpkg": "dist/chooks.min.js",
   "author": "divasatanica",
   "license": "MIT",
   "repository": "https://github.com/divasatanica/chooks",
