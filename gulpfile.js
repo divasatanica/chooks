@@ -4,6 +4,8 @@ const ts = require('gulp-typescript');
 const del = require('del');
 
 gulp.task('clean', async function() {
+  // HACK: Gulp-Typescript will throw Typescript Semantic Error if it exists
+  await del('node_modules/@types/webpack/**');
   await del('lib/**');
   await del('es/**');
   await del('dist/**');
@@ -19,7 +21,7 @@ gulp.task('cjs', function() {
     .pipe(tsProject())
     .pipe(
       babel({
-        configFile: './babel.config.js'
+        configFile: './babel.build.config.js'
       }),
     )
     .pipe(gulp.dest('lib/'));
@@ -35,7 +37,7 @@ gulp.task('es', function() {
     .pipe(tsProject())
     .pipe(
       babel({
-        configFile: './babel.config.js'
+        configFile: './babel.build.config.js'
       }),
     )
     .pipe(gulp.dest('es/'));

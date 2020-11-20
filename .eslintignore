@@ -3,7 +3,7 @@
 /dist
 /es
 /dev-dist
-**/demo
 babel.config.js
+babel.build.config.js
 gulpfile.js
 jest.config.js

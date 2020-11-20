@@ -7,13 +7,10 @@ module.exports = {
         "corejs": 3,
         "modules": false
       }
-    ],
-    [
-      "@babel/preset-react"
     ]
   ],
-  include: ["**/*.js", "**/*.ts", "**/*.tsx"],
-  // exclude: "**/*.ts",
+  include: "**/*.js",
+  exclude: "**/*.ts",
   plugins: [
     [
       "@babel/plugin-transform-runtime"
