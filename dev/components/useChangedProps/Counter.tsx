@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useChangedProps } from '../../src';
+import { useChangedProps } from '../../../src';
 
 export default function Counter(props) {
   console.log('Render Counter');

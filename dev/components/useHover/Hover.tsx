@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { useHover, useMount, useUnmount } from '../../src';
+import { useHover, useMount, useUnmount } from '../../../src';
 
 export default function Hover() {
   const ref = useRef(null);

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLocalStorage, useDebounce } from '../../src';
+import { useLocalStorage, useDebounce } from '../../../src';
 
 export default function Storage() {
   console.log('Render Storage');
@@ -18,7 +18,7 @@ export default function Storage() {
   return (
     <>
       <input onChange={onStorageInputChange}></input>
-      <span>Storage Value: {storage}</span>
+      <span>Storage Values: {storage}</span>
     </>
   )
 }

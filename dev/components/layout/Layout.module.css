@@ -1,5 +1,5 @@
-@import './index.css';
 .App {
+  display: flex;
   text-align: center;
 }
 
@@ -15,12 +15,13 @@
 }
 
 .App-header {
+  flex: 1;
   background-color: #282c34;
-  min-height: 100vh;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   font-size: calc(10px + 2vmin);
   color: white;
 }
@@ -36,4 +37,10 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.App-body {
+  flex: 5;
+  height: 100vh;
+  padding: 50px;
 }

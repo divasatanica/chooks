@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { useToggle } from '../../src';
+import { useToggle } from '../../../src';
 
-export default function ToggleBackground({ onChange }) {
+export default function ToggleBackground() {
   const [isDefaultNight, setIsDefaultNight] = useState(false);
   const [isNight, toggleIsNight] = useToggle(isDefaultNight);
 
   useEffect(() => {
-    const appHeader = document.getElementById('app-header');
+    const appHeader = document.getElementById('app-body');
     if (!appHeader) {
       return;
     }
@@ -17,8 +17,7 @@ export default function ToggleBackground({ onChange }) {
       appHeader.style.backgroundColor = '#fff';
       appHeader.style.color= '#333';
     }
-    onChange(isNight);
-  }, [isNight, onChange]);
+  }, [isNight]);
 
   return (
     <div>

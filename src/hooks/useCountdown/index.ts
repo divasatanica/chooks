@@ -64,6 +64,8 @@ function useCountdown(target: number | Date | string, options: IUseCountdownOpti
     timerRef.current = setInterval(() => {
       setCountdown(getGapTime(targetDate));
     }, options.updateFrequency);
+
+    return () => clearInterval(timerRef.current);
   }, [target, paused]);
 
   return {
