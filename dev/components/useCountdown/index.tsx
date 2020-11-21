@@ -27,9 +27,10 @@ export default function CountdownConfig() {
       console.log('Invalid Date, Check Your Input');
       return;
     }
+    setTarget(target);
     setDate(target);
   };
-  const { data, start, stop } = useCountdown(date);
+  const { data, start, stop, setTarget } = useCountdown(date);
 
   return (
     <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column'}}>

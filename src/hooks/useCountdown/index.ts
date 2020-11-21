@@ -1,10 +1,12 @@
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect, useState, useMemo } from 'react';
 import { isDate } from '../../utils/type';
 
 const SECOND = 1000;
 const MIN = 60 * SECOND;
 const HOUR = 60 * MIN;
 const DAY = 24 * HOUR;
+
+type IDate = Date | number | string | undefined;
 
 interface IUseCountdownOption {
   updateFrequency?: number;
@@ -14,18 +16,22 @@ const DEFAULT_OPTION: IUseCountdownOption = {
   updateFrequency: 1000
 }
 
-function getTargetDate(target: number | Date | string): Date {
+function getTargetDate(target: IDate): Date {
+  if (!target) {
+    return new Date(0);
+  }
   return isDate(target) ? target : new Date(target);
 }
 
-function isSameDate(a: Date, b: Date) {
-  return a.getTime() === b.getTime();
+function getGapTime(target: IDate) {
+  const dateObj = getTargetDate(target);
+  const left = dateObj.getTime() - new Date().getTime();
+
+  return Math.max(left, 0);
 }
 
-function getGapTime(target: Date) {
-  const now = Date.now();
-  const targetTime = target.getTime();
-  const gap = targetTime - now;
+function parseLeft(left: number) {
+  const gap = left;
   const day = Math.floor(gap / DAY);
   const hour = Math.floor((gap - day * DAY) / HOUR);
   const min = Math.floor((gap - day * DAY - hour * HOUR) / MIN);
@@ -39,11 +45,10 @@ function getGapTime(target: Date) {
   }
 }
 
-function useCountdown(target: number | Date | string, options: IUseCountdownOption = DEFAULT_OPTION ) {
+function useCountdown(targetDate?: number | Date | string, options: IUseCountdownOption = DEFAULT_OPTION) {
   const timerRef = useRef(null as any);
-  const targetDate = getTargetDate(target);
-  const dateRef = useRef(targetDate);
-  const [countdown, setCountdown] = useState(getGapTime(targetDate));
+  const [target, setTargetDate] = useState(targetDate);
+  const [timeLeft, setTimeLeft] = useState(() => getGapTime(target));
   const [paused, setPaused] = useState(false);
 
   useEffect(() => {
@@ -51,30 +56,38 @@ function useCountdown(target: number | Date | string, options: IUseCountdownOpti
       clearInterval(timerRef.current);
       return;
     }
-    // If the type of target is Date, here we should turn them into timestamp to compare.
-    if (target !== dateRef.current && isDate(target) && isSameDate(target, dateRef.current)) {
-      return;
-    }
     if (!target) {
+      setTimeLeft(0);
       return;
     }
-    dateRef.current = getTargetDate(target);
-    clearInterval(timerRef.current);
-    setCountdown(getGapTime(targetDate));
-    timerRef.current = setInterval(() => {
-      setCountdown(getGapTime(targetDate));
+
+    setTimeLeft(getGapTime(target));
+
+    const timer = timerRef.current = setInterval(() => {
+      const timeLeft = getGapTime(target);
+      setTimeLeft(timeLeft);
+      if (timeLeft <= 0) {
+        clearInterval(timer);
+      }
     }, options.updateFrequency);
 
-    return () => clearInterval(timerRef.current);
-  }, [target, paused]);
+    return () => clearInterval(timer);
+  }, [target, paused, options.updateFrequency]);
+
+  const data = useMemo(() => parseLeft(timeLeft), [timeLeft]);
 
   return {
-    data: countdown,
+    data: {
+      ...data,
+      left: timeLeft
+    },
     stop: () => setPaused(true),
-    start: () => setPaused(false)
+    start: () => setPaused(false),
+    setTarget: setTargetDate
   };
 }
 
 export {
-  useCountdown
+  useCountdown,
+  IDate
 }
