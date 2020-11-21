@@ -81,16 +81,18 @@ const { data, start, stop } = useCountdown(
 ### Params
 | Property     | Description                  | Type                                     | Default |
 | ------------ | ---------------------------- | ---------------------------------------- | ------- |
-| targetDate | Necessary，set a target value | `number` \| `string` \| `Date` | - |
+| targetDate | Optional，set a target value | `number` \| `string` \| `Date` | - |
 | options | Optional，set Options | `object` | `{ updateFrequency: 1000 }` |
 
 ### Result
 
 | Property | Description   | Type    |
 | -------- | ------------- | ------- |
-| data.day    | Countdown days | Number |
-| data.hour  | Countdown hours | Number |
-| data.min    | Countdown mins | Number |
-| data.sec  | Countdown secs | Number |
-| stop  | A method to pause the interval | Function |
-| start  | A method to resume the interval | Function |
+| data.day    | Countdown days | `Number` |
+| data.hour  | Countdown hours | `Number` |
+| data.min    | Countdown mins | `Number` |
+| data.sec  | Countdown secs | `Number` |
+| data.left | Countdown millsecs | `Number`|
+| stop  | A method to pause the interval | `Function` |
+| start  | A method to resume the interval | `Function` |
+| setTarget | A method to set new target | `Function` |

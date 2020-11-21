@@ -1,7 +1,7 @@
 const Webpack = require('webpack')
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const HtmlWebpackTagsPlugin = require('html-webpack-tags-plugin');
 
 module.exports = {
   mode: 'development',
@@ -71,6 +71,9 @@ module.exports = {
 
   plugins: [
     new Webpack.HotModuleReplacementPlugin(),
+    new Webpack.DllReferencePlugin({
+      manifest: require('../dev-dist/reactVendor.manifest.json')
+    }),
     new HtmlWebpackPlugin({
       filename: './index.html',
       chunks: [
@@ -81,6 +84,11 @@ module.exports = {
       hash: false,
     }),
     
+    new HtmlWebpackTagsPlugin({
+      tags: ['reactVendor.dll.js'],
+      append: false,
+      htmlPluginName: 'html-webpack-plugin'
+    })
   ],
 
   //webpack-dev-server --inline
@@ -91,7 +99,8 @@ module.exports = {
     host: "0.0.0.0",
     stats: "normal",
     disableHostCheck: true,
-    historyApiFallback: true
+    historyApiFallback: true,
+    hot: true
   },
 
   devtool: 'source-map',
