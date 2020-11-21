@@ -5,32 +5,25 @@ import loadable from '@loadable/component';
 import Layout from '../components/layout/Layout';
 import Home from '../components/layout/Home';
 
-
-// const Countdown = loadable(() => import('../components/Countdown'));
-// const Hover = loadable(() => import('../components/Hover'));
-// const Mouse = loadable(() => import('../components/Mouse'));
-// const Storage = loadable(() => import('../components/Storage'));
-// const Toggle = loadable(() => import('../components/Toggle'));
-
 const RouteComponents = [
   {
-    component: loadable(() => import('../components/useCountdown')),
+    component: loadable(() => import('../components/useCountdown/index')),
     path: '/useCountdown'
   },
   {
-    component: loadable(() => import('../components/useHover')),
+    component: loadable(() => import('../components/useHover/index')),
     path: '/useHover'
   },
   {
-    component: loadable(() => import('../components/useMouse')),
+    component: loadable(() => import('../components/useMouse/index')),
     path: '/useMouse'
   },
   {
-    component: loadable(() => import('../components/useLocalStorage')),
+    component: loadable(() => import('../components/useLocalStorage/index')),
     path: '/useLocalStorage'
   },
   {
-    component: loadable(() => import('../components/useToggle')),
+    component: loadable(() => import('../components/useToggle/index')),
     path: '/useToggle'
   }
 ].map(({ component: Component, path }) => {
