@@ -18,5 +18,9 @@ export const Menus = [
   {
     title: 'useToggle',
     path: '/useToggle'
+  },
+  {
+    title: 'useInView',
+    path: '/useInView'
   }
 ];
