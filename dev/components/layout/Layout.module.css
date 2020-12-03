@@ -43,4 +43,5 @@
   flex: 5;
   height: 100vh;
   padding: 50px;
+  overflow-y: auto;
 }

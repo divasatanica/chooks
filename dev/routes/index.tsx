@@ -24,6 +24,10 @@ const RouteComponents = [
   {
     component: lazy(() => import('../components/useToggle/index')),
     path: '/useToggle'
+  },
+  {
+    component: lazy(() => import('../components/useInView/index')),
+    path: '/useInView'
   }
 ].map(({ component: Component, path }) => {
   return (
