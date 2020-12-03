@@ -1,17 +1,113 @@
-
+const Webpack = require('webpack')
 const path = require('path');
-const { merge } = require('webpack-merge');
-const baseConfig = require('./webpack.config.base');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackTagsPlugin = require('html-webpack-tags-plugin');
 
-module.exports = merge(baseConfig, {
+module.exports = {
   mode: 'development',
+
+  entry: {
+    main: path.resolve(__dirname, '../dev/index.tsx')
+  },
 
   output: {
     path: path.resolve(__dirname, '../dev-dist'),
     publicPath: '/',
-    filename: 'index.js',
-    library: 'Chooks', // 定义暴露到浏览器环境的全局变量名称
-    libraryTarget: 'umd',
-    globalObject: 'this',
+    filename: 'js/[name].chunk.js',
+    chunkFilename: 'js/[name].chunk.js'
   },
-});
+
+  optimization: {
+    minimize: false,
+    runtimeChunk: {
+      name: 'runtime'
+    }
+  },
+
+  module: {
+    rules: [
+      {
+        test: /\.tsx?$/,
+        include: [
+          path.join(__dirname, '../dev'),
+          path.join(__dirname, '../src')
+        ],
+        loader: 'eslint-loader',
+        enforce: 'pre',
+        options: {
+          formatter: require('eslint-friendly-formatter'),
+        }
+      },
+      {
+        test: /\.tsx?$/,
+        include: [
+          path.join(__dirname, '../dev'),
+          path.join(__dirname, '../src')
+        ],
+        use: [
+          {
+            loader: 'babel-loader',
+          },
+          {
+            loader: 'ts-loader'
+          }
+        ],
+      },
+      {
+        test: /\.css$/,
+        include: path.join(__dirname, '../dev'),
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true
+            }
+          },
+        ]
+      }
+    ]
+  },
+
+  plugins: [
+    new Webpack.HotModuleReplacementPlugin(),
+    new Webpack.DllReferencePlugin({
+      manifest: require('../dev-dist/reactVendor.manifest.json')
+    }),
+    new HtmlWebpackPlugin({
+      filename: './index.html',
+      chunks: [
+        'main'
+      ],
+      inject: true,
+      template: path.resolve(__dirname, '../dev/public/index.html'),
+      hash: false,
+    }),
+    
+    new HtmlWebpackTagsPlugin({
+      tags: ['reactVendor.dll.js'],
+      append: false,
+      htmlPluginName: 'html-webpack-plugin'
+    })
+  ],
+
+  //webpack-dev-server --inline
+  devServer:{
+    contentBase: path.resolve(__dirname, '../dev-dist'),
+    publicPath: '/',
+    port: 5000,
+    host: "0.0.0.0",
+    stats: "normal",
+    disableHostCheck: true,
+    historyApiFallback: true,
+    hot: true
+  },
+
+  devtool: 'source-map',
+  resolve: {
+    extensions: ['.ts', '.tsx', '.js', '.json', '.html'],
+    alias: {
+      '@': path.resolve(__dirname, '../src')
+    }
+  },
+};

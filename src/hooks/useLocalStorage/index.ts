@@ -12,11 +12,12 @@ const DEFAULT_OPTION = {
   expireAge: 0
 };
 
-function useLocalStorage(key: string, defaultValue: unknown, options: UseLocalStorageOption = DEFAULT_OPTION): [any, StorageUpdater<any>] {
+function useLocalStorage(key: string, defaultValue: any, options: UseLocalStorageOption = DEFAULT_OPTION): [any, StorageUpdater<any>] {
+  const { expireAge } = options
   const storagedValue = localStorage.getItem(key);
   const initialValue = storagedValue ? parseJson(storagedValue) : defaultValue;
-  const [memoizedStorage, setMemoizedStorage] = useState(initialValue as unknown);
-  const updater = (updatedData: unknown) => {
+  const [memoizedStorage, setMemoizedStorage] = useState(initialValue as any);
+  const updater = (updatedData: any) => {
     const serializedValue = JSON.stringify(updatedData);
     localStorage.setItem(key, serializedValue);
     setMemoizedStorage(updatedData);
@@ -29,16 +30,17 @@ function useLocalStorage(key: string, defaultValue: unknown, options: UseLocalSt
     const time = localStorage.getItem(`${key}__expiration`);
     if (time) {
       const timeInNumber = parseInt(time, 10);
-      if (Date.now() - timeInNumber > options.expireAge) {
+      if (Date.now() >= timeInNumber) {
         localStorage.removeItem(`${key}__expiration`);
         localStorage.removeItem(key);
+        setMemoizedStorage(null);
       }
     }
   }
 
   useEffect(() => {
     updater(initialValue);
-  }, [initialValue]);
+  }, [initialValue, expireAge]);
 
   return [memoizedStorage, updater];
 }

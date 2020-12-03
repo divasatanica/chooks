@@ -1,0 +1,9 @@
+.menu-item {
+  font-size: 24px;
+  cursor: pointer;
+  transition: color 0.3s ease-in-out;
+}
+
+.menu-item.active {
+  color: #4d8dd9;
+}
