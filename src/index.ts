@@ -9,6 +9,7 @@ import { useMount } from './hooks/useMount/index';
 import { useUnmount } from './hooks/useUnmount/index';
 import { useMousePosition } from './hooks/useMousePosition/index';
 import { usePageTitle } from './hooks/usePageTitle/index';
+import { useInView } from './hooks/useInView/index';
 
 export {
   useChangedProps,
@@ -21,5 +22,6 @@ export {
   useMount,
   useUnmount,
   useMousePosition,
-  usePageTitle
+  usePageTitle,
+  useInView
 };
