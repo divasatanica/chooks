@@ -22,5 +22,9 @@ export const Menus = [
   {
     title: 'useInView',
     path: '/useInView'
+  },
+  {
+    title: 'useFetch',
+    path: '/useFetch'
   }
 ];
