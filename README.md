@@ -34,6 +34,7 @@ import { useMount } from '@vergiss/chooks';
 - useUrlParams ([EN-US](https://github.com/divasatanica/chooks/blob/master/src/hooks/useUrlParams/index.en-US.md))
 - usePageTitle ([EN-US](https://github.com/divasatanica/chooks/blob/master/src/hooks/usePageTitle/index.en-US.md))
 - useInView ([EN-US](https://github.com/divasatanica/chooks/blob/master/src/hooks/useInView/index.en-US.md))
+- useFetch ([EN-US](https://github.com/divasatanica/chooks/blob/master/src/hooks/useFetch/index.en-US.md))
 
 ## ✅ License
 

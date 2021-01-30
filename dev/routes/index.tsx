@@ -28,6 +28,10 @@ const RouteComponents = [
   {
     component: lazy(() => import('../components/useInView/index')),
     path: '/useInView'
+  },
+  {
+    component: lazy(() => import('../components/useFetch/index')),
+    path: '/useFetch'
   }
 ].map(({ component: Component, path }) => {
   return (
