@@ -19,8 +19,8 @@
     "build:dll": "webpack --config ./webpack/webpack.config.dll.js",
     "build": "gulp && webpack --config ./webpack/webpack.config.prod.js",
     "dev": "webpack serve --config ./webpack/webpack.config.dev.js",
-    "test": "jest",
-    "pub": "jest && npm run build && npm publish --access public"
+    "test": "jest src/hooks",
+    "pub": "npm test && npm run build && npm publish --access public"
   },
   "files": [
     "dist",
